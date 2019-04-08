@@ -46,10 +46,6 @@ Additional setup steps and installation:
 * Xdebug 2.5.5
 * Nano
 
-## Security Risks
-
-There are security implications for how self-signed SSL certificates and MariaDB (root access) are setup which make this deployment unsuitable for production environments.
-
 ## Docker Images
 The following Docker images are used:
 * centos/httpd-24-centos7
@@ -62,3 +58,7 @@ The following ports are exposed by Apache and Docker Compose:
 * 8080 (HTTP)
 * 443 (HTTPS)
 * 8443 (HTTPS)
+
+## Security Risks
+
+There are security implications for how self-signed SSL certificates and MariaDB (root access) are setup which make this deployment unsuitable for production environments.
