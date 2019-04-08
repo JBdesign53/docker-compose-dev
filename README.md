@@ -1,9 +1,9 @@
 # Build a Local Development Environment
 Creates a LAMP stack for local web development with Docker Compose. The stack uses CentOS, Apache and PHP.
 
-SSL keys are created for browsing over HTTPS. See the Applications section below for additional installation and setup.
+SSL keys are created for browsing over HTTPS. See the Applications section below for additional setup activities.
 
-MariaDB/MySQL is turned off by default. See the Applications section below to enable.
+MariaDB/MySQL is turned off by default. See the Applications section below for instructions on enabling MariaDB.
 
 ## Applications and Setup
 Core:
