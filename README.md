@@ -1,4 +1,4 @@
-# Build a Local Development Environment
+# LAMP Web Development Environment
 Creates a LAMP stack for local web development with Docker Compose. The stack uses CentOS, Apache and PHP.
 
 SSL keys are created for browsing over HTTPS. See the Applications section below for additional setup activities.
