@@ -1,34 +1,51 @@
-# Builds a Local Development Environment
-Creates a local web development environment using Docker Compose and Docker.
+# Build a Local Development Environment
+Creates a LAMP stack for local web development with Docker Compose. The stack uses CentOS, Apache and PHP.
 
-A LAMP stack is built with CentOS, Apache and PHP. (MariaDB/MySQL can also be added. See Applications section below.)
+SSL keys are created for browsing over HTTPS. See the Applications section below for additional installation and setup.
 
-SSL keys are also created for browsing over HTTPS.
+MariaDB/MySQL is turned off by default. See the Applications section below to enable.
 
-## Applications
+## Applications and Setup
 Core:
 * CentOS 7
 * Apache 2.4
 * PHP 5.6
 * MySQL - Disabled. See the /docker-compose.yml file and uncomment to enable.
 
-Additional setup and packages:
+Additional installation/setup:
 * SSL keys using OpenSSL
 * Nano
 * Xdebug
 
-## Images
+## Docker Images
 The following Docker images are used:
 * centos/httpd-24-centos7
 * php:5.6.40-fpm
 * mariadb:10.4.2
 
-## Running
+## Website Files
+Web files are mounted from the local file system into /var/www/etc/. Modify the file path in /.env.
+
+## Running the Environment
 Starting the environment:
 `docker-compose up`
 
 Stopping the environment:
 `ctrl-c` and then `docker-compose down`
 
-## Website Files
-Web files are mounted from the local file system into /var/www/etc/. Modify the file path in /.env.
+## Connecting with your Web Browser
+For HTTP connections use:
+`http://localhost`
+
+For HTTPS connections use:
+`https://localhost`
+
+You can also use a hosts file hack to use a different domain. For example, you could add the following line into your hosts file to connect at `loc.example.com`:
+`loc.example.com  127.0.0.1`
+
+## Ports
+The following ports are exposed by Apache:
+* 80(HTTP)
+* 8080 (HTTP)
+* 443 (HTTPS)
+* 8443 (HTTPS)
