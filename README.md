@@ -27,9 +27,9 @@ To use a domain other than `//localhost` you will need to modify your 'hosts' fi
 ```
 
 ## Website Files
-Web files are mounted from the local file system at /www into /var/www/etc/ in CentOS. The local volume is set in the /.env file.
+Web files are mounted from the local file system at ./www into /var/www/etc/ in CentOS. The local volume is set in the /.env file.
 
-Modify the file path in /.env to point to your local website files.
+Modify the file path in ./.env to point to your local website files.
 
 ## What Gets Built
 
