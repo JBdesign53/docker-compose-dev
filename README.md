@@ -19,7 +19,7 @@ For HTTP connections use:
 For HTTPS connections use:
 `https://localhost` Your web browser will throw a certificate warning. Accept this risk to view the website.
 
-To use a domain other than `//localhost` you will need to modify your 'hosts' file. For example, you could add the following line into your hosts file to connect to the URL `loc.example.com`:
+To use a domain other than `//localhost` you will need to modify your 'hosts' file. For example, you could add the following lines into your hosts file to connect to the URL `loc.example.com`:
 
 ```
 127.0.0.1 loc.example.com
