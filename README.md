@@ -1,7 +1,7 @@
 # LAMP Web Development Environment
 Creates a LAMP stack for local web development with Docker Compose. The stack uses CentOS, Apache and PHP.
 
-SSL keys are created for browsing over HTTPS. See the Applications section below for a full list of additional setup activities.
+Self-signed SSL keys are created for browsing over HTTPS. See the Applications section below for a full list of additional setup activities.
 
 MariaDB/MySQL is turned off by default. See the Applications section below for instructions on enabling MariaDB.
 
@@ -24,7 +24,7 @@ The following Docker images are used:
 * mariadb:10.4.2
 
 ## Website Files
-Web files are mounted from the local file system into /var/www/etc/ in CentOS. Modify the file path in /.env to point to your local website file.
+Web files are mounted from the local file system into /var/www/etc/ in CentOS. Modify the file path in /.env to point to your local website files.
 
 ## Running the Environment
 Starting the environment:
@@ -38,9 +38,9 @@ For HTTP connections use:
 `http://localhost`
 
 For HTTPS connections use:
-`https://localhost`
+`https://localhost` Your web browser will throw a certificate warning. Accept this risk to view the website.
 
-You can also use a hosts file hack to use a different domain. For example, you could add the following line into your hosts file to connect at `loc.example.com`:
+You can use a hosts file hack to use a different domain. For example, you could add the following line into your hosts file to connect at `loc.example.com`:
 
 `loc.example.com  127.0.0.1`
 
