@@ -26,7 +26,7 @@ To use a domain other than `//localhost` you will need to modify your 'hosts' fi
 :1  loc.example.com
 ```
 
-Note: If you are using a domain other than `//localhost` you do not need to change the OpenSSL setup. Although the SSL keys are created using 'localhost' as the domain name other domain names should work as expected.
+Note: If you are using a domain other than `//localhost` you do not need to change the OpenSSL setup. Although the SSL keys are created using 'localhost' as the domain name other domain names should work correctly.
 
 ## Website Files
 Web files are mounted from the local file system at ./www into CentOS at /var/www/etc/.
