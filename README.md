@@ -5,7 +5,7 @@ Self-signed SSL keys are created for browsing over HTTPS. See the Applications s
 
 MariaDB/MySQL is turned off by default. See the Applications section below for instructions on enabling MariaDB.
 
-## Containers and Setup
+## Containers and Additional Setup
 
 Docker Compose builds several containers and also performs additional setup activities for web development, such as adding SSL and Xdebug support.
 
