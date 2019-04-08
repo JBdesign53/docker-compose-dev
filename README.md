@@ -22,7 +22,7 @@ For HTTPS connections use:
 To use a domain other than `//localhost` you will need to modify your 'hosts' file. For example, you could add the following lines into your hosts file to connect to the URL `loc.example.com`:
 
 ```
-127.0.0.1 loc.example.com
+127.0.0.1  loc.example.com
 :1  loc.example.com
 ```
 
@@ -42,8 +42,8 @@ Containers:
 
 Additional installation and setup:
 * SSL keys using OpenSSL
-* Nano
 * Xdebug 2.5.5
+* Nano
 
 ## Security Risks
 
@@ -56,7 +56,7 @@ The following Docker images are used:
 * mariadb:10.4.2
 
 ## Ports
-The following ports are exposed by Apache:
+The following ports are exposed by Apache and Docker Compose:
 * 80(HTTP)
 * 8080 (HTTP)
 * 443 (HTTPS)
