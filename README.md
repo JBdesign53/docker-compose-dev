@@ -36,7 +36,7 @@ To show different website files modify the `HTML_VOLUME` variable in the ./.env 
 ## What Gets Built
 Docker Compose builds several containers. There are also additional setup steps to help with web development, such as adding SSL and Xdebug support.
 
-Docker Containers:
+Docker containers:
 * CentOS 7 with Apache 2.4
 * PHP-FPM 5.6
 * MariaDB - Disabled by default. To enable, uncomment lines in the /docker-compose.yml file.
