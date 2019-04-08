@@ -54,10 +54,14 @@ The following Docker images are used:
 
 ## Ports
 The following ports are exposed by Apache and Docker Compose:
-* 80(HTTP)
-* 8080 (HTTP)
-* 443 (HTTPS)
-* 8443 (HTTPS)
+
+HTTP:
+* 80
+* 8080
+
+HTTPS:
+* 443
+* 8443
 
 ## Security Risks
 
