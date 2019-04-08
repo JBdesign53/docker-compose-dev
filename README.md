@@ -24,7 +24,7 @@ The following Docker images are used:
 * mariadb:10.4.2
 
 ## Website Files
-Web files are mounted from the local file system into /var/www/etc/. Modify the file path in /.env.
+Web files are mounted from the local file system into /var/www/etc/ in CentOS. Modify the file path in /.env to point to your local website file.
 
 ## Running the Environment
 Starting the environment:
@@ -41,6 +41,7 @@ For HTTPS connections use:
 `https://localhost`
 
 You can also use a hosts file hack to use a different domain. For example, you could add the following line into your hosts file to connect at `loc.example.com`:
+
 `loc.example.com  127.0.0.1`
 
 ## Ports
