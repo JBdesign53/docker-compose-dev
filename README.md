@@ -26,21 +26,22 @@ To use a domain other than `//localhost` you will need to modify your 'hosts' fi
 :1  loc.example.com
 ```
 
-## Website Files
-Web files are mounted from the local file system at ./www into /var/www/etc/ in CentOS. The local volume is set in the /.env file.
+Note: If you are using a domain other than `//localhost` you do not need to change the OpenSSL setup. Although the SSL keys are created using 'localhost' as the domain name other domain names should work as expected.
 
-Modify the file path in ./.env to point to your local website files.
+## Website Files
+Web files are mounted from the local file system at ./www into /var/www/etc/ in CentOS.
+
+To show different web files modify the `HTML_VOLUME` variable in the ./.env file to point to your local website files.
 
 ## What Gets Built
-
-Docker Compose builds several containers and also performs additional setup activities to help with web development, such as adding SSL and Xdebug support.
+Docker Compose builds several containers. There are also additional setup steps to help with web development, such as adding SSL and Xdebug support.
 
 Containers:
 * CentOS 7 with Apache 2.4
 * PHP-FPM 5.6
 * MariaDB - Disabled by default. To enable, uncomment lines in the /docker-compose.yml file.
 
-Additional installation and setup:
+Additional setup steps and installation:
 * SSL keys using OpenSSL
 * Xdebug 2.5.5
 * Nano
