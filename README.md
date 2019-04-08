@@ -21,7 +21,10 @@ For HTTPS connections use:
 
 To use a domain other than `//localhost` you will need to modify your 'hosts' file. For example, you could add the following line into your hosts file to connect to the URL `loc.example.com`:
 
-`loc.example.com  127.0.0.1`
+```
+127.0.0.1 loc.example.com
+:1  loc.example.com
+```
 
 ## Website Files
 Web files are mounted from the local file system at /www into /var/www/etc/ in CentOS. The local volume is set in the /.env file.
