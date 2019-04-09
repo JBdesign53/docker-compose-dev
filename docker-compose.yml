@@ -1,0 +1,42 @@
+version: "3"
+
+networks:
+  frontend:
+  backend:
+
+services:
+  php:
+    build: './php/'
+    container_name: php
+
+    networks:
+      - backend
+    volumes:
+      - ${HTML_VOLUME}:/var/www/html/
+
+#  mysql:
+#    image: mariadb:10.4.2
+#    container_name: sql
+
+#    networks:
+#      - backend
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=insecurepassword
+
+  apache:
+    build: './apache/'
+    container_name: centos
+    
+    depends_on:
+      - php
+#      - mysql
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+      - "8443:8443"
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - ${HTML_VOLUME}:/var/www/html/
