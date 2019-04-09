@@ -6,7 +6,7 @@ networks:
 
 services:
   php:
-    build: './php/'
+    build: './docker/php/'
     container_name: php
 
     networks:
@@ -24,7 +24,7 @@ services:
 #      - MYSQL_ROOT_PASSWORD=insecurepassword
 
   apache:
-    build: './apache/'
+    build: './docker/apache/'
     container_name: centos
     
     depends_on:
