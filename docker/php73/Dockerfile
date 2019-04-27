@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y
 # I suspect the PHP extensons modify the php.ini file
 COPY php.ini /usr/local/etc/php/php.ini
 
+# Change the port number of PHP-FPM
+# COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
 # Install PHP extensions
 # PHP 7 -> xdebug-2.7.0
 #RUN pecl install xdebug-2.7.0 \
