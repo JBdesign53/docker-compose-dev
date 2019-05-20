@@ -14,4 +14,5 @@ COPY php.ini /usr/local/etc/php/php.ini
 #RUN pecl install xdebug-2.7.0 \
 #    && docker-php-ext-enable xdebug
 
-#RUN docker-php-ext-install mysqli
+# Returns an error
+# RUN docker-php-ext-install mysqli

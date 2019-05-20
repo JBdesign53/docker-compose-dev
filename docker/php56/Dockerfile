@@ -9,6 +9,5 @@ COPY php.ini /usr/local/etc/php/php.ini
 # Install PHP extensions
 # PHP 5.6 -> xdebug-2.5.5
 RUN pecl install xdebug-2.5.5 \
-    && docker-php-ext-enable xdebug
-
-RUN docker-php-ext-install mysqli
+    && docker-php-ext-enable xdebug \
+    && docker-php-ext-install mysql
