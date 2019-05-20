@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y
 COPY php.ini /usr/local/etc/php/php.ini
 
 # Change the port number of PHP-FPM
-# COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+#COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 
 # Install PHP extensions
 # PHP 7 -> xdebug-2.7.0
