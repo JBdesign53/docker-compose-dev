@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.0-fpm
 
 RUN apt-get update && apt-get install -y
 
@@ -8,7 +8,7 @@ COPY php.ini /usr/local/etc/php/php.ini
 
 # Install PHP extensions
 # PHP 7 -> xdebug-2.7.0
-RUN pecl install xdebug-2.7.0 \
+RUN pecl install xdebug-2.6.0 \
     && docker-php-ext-enable xdebug
 
 # Returns an error

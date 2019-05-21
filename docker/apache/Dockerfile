@@ -8,11 +8,9 @@ USER root
 COPY httpd-local.conf /etc/httpd/conf.d/httpd-local.conf
 COPY httpd-ssl.conf /etc/httpd/conf.d/httpd-ssl.conf
 
-# RUN yum update && yum install -y \
 RUN yum -y update && yum clean all \
     && yum install nano -y
 #RUN yum install htop -y
-#RUN yum install openssl -y
 
 RUN mkdir /etc/ssl/private
 
@@ -30,7 +28,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private
 #  conf/httpd.conf
 
 # The httpd-24-centos7 image uses ports 8080 and 8443.
-# Set these to default ports.
+# Change these back to the default HTTP/HTTPS ports.
 RUN sed -i "s|8080|80 |g" /etc/httpd/conf/httpd.conf \
     && sed -i "s|8443|443 |g" /etc/httpd/conf.d/ssl.conf
 

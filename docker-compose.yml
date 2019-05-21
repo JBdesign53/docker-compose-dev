@@ -14,6 +14,15 @@ services:
     volumes:
       - ${HTML_VOLUME}:/var/www/html/
 
+  php70:
+    build: './docker/php70/'
+    container_name: php70
+
+    networks:
+      - backend
+    volumes:
+      - ${HTML_VOLUME}:/var/www/html/
+
   php73:
     build: './docker/php73/'
     container_name: php73
@@ -38,6 +47,7 @@ services:
     
     depends_on:
       - php56
+      - php70
       - php73
 #      - mysql
     ports:
