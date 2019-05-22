@@ -1,9 +1,15 @@
 # LAMP Web Development Environment
-Creates a LAMP stack for local web development with Docker Compose. The stack uses CentOS, Apache and PHP-FPM.
+Deploy a web development environment for multiple domains running different versions of PHP. Suitable as a local development environment using HTTP and HTTPS. The stack uses CentOS, Apache and PHP-FPM.
 
 Self-signed SSL keys are created for browsing over HTTPS. See the 'What Gets Built' section below for a full list of additional setup activities.
 
 MariaDB/MySQL is turned off by default. See the 'What Gets Built' section below for instructions on enabling MariaDB.
+
+Document:
+* Local hosts file
+* Vhosts - http/https
+* Environment variables and WWW files
+* Firefox SSL self-signed certificate bug
 
 ## Running the Environment
 Start the environment with:
