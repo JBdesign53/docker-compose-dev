@@ -5,13 +5,16 @@ Self-signed SSL keys are created for browsing over HTTPS. See the 'What Gets Bui
 
 MariaDB/MySQL is turned off by default. See the 'What Gets Built' section below for instructions on enabling MariaDB.
 
-Document:
+To document:
 * Local hosts file
 * Vhosts - http/https
 * Environment variables and WWW files
 * Firefox SSL self-signed certificate bug
 
 ## Running the Environment
+
+Navigate to the `docker-compose-web-dev` folder.
+
 Start the environment with:
 `docker-compose up`
 
