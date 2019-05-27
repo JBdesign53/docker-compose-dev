@@ -15,7 +15,7 @@ Deploy a web development environment for multiple domains running on different v
 
 After cloning the repository there are a few steps to setup and test the initial configuration.
 
-Copy the contents from `/extra/hosts` and paste it into your local `hosts` file. This location varies depending on your operating system:
+Copy the contents from `/extra/hosts` and paste it at the end of your local `hosts` file and save. Your local hosts file location varies depending on your operating system:
 
 * Windows: C:\Windows\System32\drivers\etc\hosts
 * Mac/Linux: /etc/hosts
@@ -38,21 +38,36 @@ The following domains should now be reachable through your web browser:
 * https://php73.com
 
 
+## Running the Environment
+
+Navigate to the `docker-compose-web-dev` folder.
+
+Start the environment with:
+`docker-compose up`
+
+Stop the environment with:
+`ctrl-c` and then `docker-compose down`
+
+
 ## Serving Your Website Files
 
-Additional configuration is required to setup your local domains and serve the web files. First:
+Note: It is recommended that you follow the steps in **Initial Setup** to confirm the local web development environment is working before making changes to serve your own web files.
 
-* Provide the directory path to your website files.
+Additional configuration is required to setup local domain names and to serve your web files.
+
+First:
+* Provide the path to your website directory. This will contain each website/domain in its own  child directory.
 
 Then, for each website/domain create a new:
-* Hosts file entry. This forwards the website domain to Apache.
+* Child directory in the website directory. Copy the files for your website/domin into the child directory.
+* Hosts file entry. This forwards the website domain name to Apache.
 * Vhosts entry. This tells Apache where your website files are located and which PHP version to use.
 
-**Note:** Alternatively, you can copy your website files to the `/docker/www/` directory. In this case, you only need to add new vhost entries.
+**Note:** Alternatively, you can copy your website files to the `/docker/www/` directory. In this case, you only need to add new hosts and vhost entries.
 
 ### Set Website Directory Path
 
-Using the default setup Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
+Using the default setup, Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
 
 To change the directory location open the `/env` file and set a new `HTML_VOLUME` directory path. This should point to the dirctory containing your website files.
 
@@ -66,11 +81,13 @@ Apache uses the settings in your vhost files to serve your website. These settin
 * Which files to serve
 * PHP version
 
+The easiest way to do this is to copy an existing vhosts entry (for the PHP version you want to use) and paste it at the end of the vhosts file. Then update this entry with the new path and domain details.
+
 **TODO**
 
 ### Modify hosts file
 
-Add a new entry in your vhosts file to access your website/domain locally.
+Add a new entry in your vhosts file to access your website/domain locally. 
 
 ```
 127.0.0.1  loc.domain.com
@@ -83,25 +100,19 @@ Below is an example of how to setup the /env file and modify the vhosts and host
 
 **TODO**
 
-
-## Running the Environment
-
-Navigate to the `docker-compose-web-dev` folder.
-
-Start the environment with:
-`docker-compose up`
-
-Stop the environment with:
-`ctrl-c` and then `docker-compose down`
-
-
-## Connecting with your Web Browser
-For HTTP connections use:
-`http://localhost`
-
-For HTTPS connections use:
-`https://localhost` Your web browser will throw a certificate warning. Accept this risk to view the website.
-
+```
+docker-compose-web-dev
+├── env
+└── docker/
+    ├── apache/
+    │   ├── httpd-local.conf
+    │   └── httpd-ssl.conf
+    └── www/
+        ├── my-website
+        ├── php56
+        ├── php70
+        └── php73
+```
 
 ## Website Files
 Website files are mounted from the local file system at ./www into CentOS at /var/www/html/.
