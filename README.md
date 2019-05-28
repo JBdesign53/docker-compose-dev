@@ -64,7 +64,7 @@ Complete one-time configuration:
 * Provide the path to your website directory. This will contain each website/domain in its own child directory.
 
 Then, for each new website/domain create an additional:
-* Child directory in the website directory. Copy the files for your website/domin into the child directory.
+* Child directory in the website directory. Copy the files for your website/domain into the child directory.
 * Hosts file entry. This forwards the website domain name to Apache.
 * Vhosts entry. This tells Apache where your website files are located and which PHP version to use.
 
