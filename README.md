@@ -58,43 +58,15 @@ Additional configuration is required to setup local domain names and to serve yo
 First:
 * Provide the path to your website directory. This will contain each website/domain in its own  child directory.
 
-Then, for each website/domain create a new:
+Then, for each new website/domain create an additional:
 * Child directory in the website directory. Copy the files for your website/domin into the child directory.
 * Hosts file entry. This forwards the website domain name to Apache.
 * Vhosts entry. This tells Apache where your website files are located and which PHP version to use.
 
 **Note:** Alternatively, you can copy your website files to the `/docker/www/` directory. In this case, you only need to add new hosts and vhost entries.
 
-### Set Website Directory Path
 
-Using the default setup, Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
-
-To change the directory location open the `/env` file and set a new `HTML_VOLUME` directory path. This should point to the dirctory containing all your website files.
-
-Each domain/website should be in its own directory similar to the directory structure in `/docker/www/`.
-
-### Modify Vhost files
-
-Apache uses the settings in your vhost files to serve your website. These settings configure:
-* The domain name
-* Access over HTTP and/or HTTPS
-* Which files to serve
-* PHP version
-
-The easiest way to do this is to copy an existing vhosts entry (for the PHP version you want to use) and paste it at the end of the vhosts file. Then update this entry with the new path and domain details.
-
-**TODO**
-
-### Modify hosts file
-
-Add a new entry in your vhosts file to access your website/domain locally. 
-
-```
-127.0.0.1  loc.domain.com
-:1  loc.domain.com
-```
-
-### Example Setup
+## Example Website Setup
 
 This section shows an example of how to create a new local website called `my-website`.
 
@@ -118,12 +90,7 @@ docker-compose-web-dev
 ```
 
 
-#### 1. Copy or Create the Web Files
-
-The website files are copied to the directory `C:/www/my-website`.
-
-
-#### 2. Set the Website Directory Path
+### 1. Set the Website Directory Path
 
 The **env** file is set to:
 
@@ -131,9 +98,23 @@ The **env** file is set to:
 HTML_VOLUME=C:/www
 ```
 
-This only needs to be set once. Any additional websites should be added to this directory. For example you might have anothe websiter called **loc.another-website.com** and you might host its files from a folder at `C:/www/another-website`.
 
-#### 3. Configure HTTP Settings
+### 2. Create Website Files
+
+The website files are copied to the directory `C:/www/my-website`.
+
+
+### 3. Update the Hosts File
+
+The following entry is added to the hosts file: 
+
+```
+127.0.0.1  loc.my-website.com
+:1  loc.my-website.com
+```
+
+
+### 4. Configure HTTP Settings
 
 The **httpd-local.conf** file contains a VirtualHost entry which reads:
 
@@ -162,10 +143,8 @@ Note where `my-website` appears in the code.
 
 Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://php73` to the version of PHP you want to use.
 
-When you need to create more websites, just add a new entry into the httpd-local.conf file.
 
-
-#### 4. Configure HTTPS Settings
+### 5. Configure HTTPS Settings
 
 The **httpd-ssl.conf** file contains a VirtualHost entry which reads:
 
@@ -199,10 +178,8 @@ Note where `my-website` appears in the code.
 
 Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://php73` to the version of PHP you want to use.
 
-When you need to create more websites, just add a new entry into the httpd-ssl.conf file.
 
-
-#### 5. Final Steps
+### 6. Build and View the Website
 
 Run the command `docker-compose up --build`. This is needed to force the build to refresh since changes have been made to the Docker configuration files.
 
@@ -211,12 +188,23 @@ The website can now be reached from a web browser at:
   * `https://loc.my-website.com`
 
 
-## Website Files
+### Website Directory Path
+
+Using the default setup, Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
+
+To change the directory location open the `/env` file and set a new `HTML_VOLUME` directory path. This should point to the dirctory containing all your website files.
+
+Each domain/website should be in its own directory similar to the directory structure in `/docker/www/`.
+
+
+## Technical information
+
+### Website Files
 Website files are mounted from the local file system at ./www into CentOS at /var/www/html/.
 
 To show different website files modify the `HTML_VOLUME` variable in the ./.env file to point to your local website files.
 
-## What Gets Built
+### What Gets Built
 Docker Compose builds several containers. There are also additional setup steps to help with web development, such as adding SSL and Xdebug support.
 
 Docker containers:
@@ -229,13 +217,7 @@ Additional setup steps and installation:
 * Xdebug 2.5.5
 * Nano
 
-## Docker Images
-The following Docker images are used:
-* centos/httpd-24-centos7
-* php:5.6.40-fpm
-* mariadb:10.4.2
-
-## Ports
+### Ports
 The following ports are exposed by Apache and Docker Compose:
 
 HTTP:
