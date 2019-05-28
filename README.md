@@ -11,9 +11,13 @@ Deploy a web development environment for multiple domains running on different v
 
 ## Initial Setup
 
-After cloning the repository there are a few steps to setup and test the initial configuration.
+Install Docker for your operating system.
 
-Copy the contents from `/extra/hosts` and paste it at the end of your local `hosts` file and save. Your local hosts file location varies depending on your operating system:
+After cloning this repository there are a few steps to setup and test the initial configuration.
+
+Copy the contents from `/extra/hosts` and paste it at the end of your local `hosts` file and save.
+
+The location of your hosts file varies depending on your operating system:
 
 * Windows: C:\Windows\System32\drivers\etc\hosts
 * Mac/Linux: /etc/hosts
