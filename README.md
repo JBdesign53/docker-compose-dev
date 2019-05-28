@@ -69,7 +69,7 @@ Then, for each website/domain create a new:
 
 Using the default setup, Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
 
-To change the directory location open the `/env` file and set a new `HTML_VOLUME` directory path. This should point to the dirctory containing your website files.
+To change the directory location open the `/env` file and set a new `HTML_VOLUME` directory path. This should point to the dirctory containing all your website files.
 
 Each domain/website should be in its own directory similar to the directory structure in `/docker/www/`.
 
@@ -96,23 +96,120 @@ Add a new entry in your vhosts file to access your website/domain locally.
 
 ### Example Setup
 
-Below is an example of how to setup the /env file and modify the vhosts and hosts files.
+This section shows an example of how to create a new local website called `my-website`.
 
-**TODO**
+The `my-website` website:
+  * Files are located at `C:/www/my-website`.
+  * Uses the domain `loc.my-website.com` and is available over HTTP and HTTPS.
+  * Will run using PHP 7.3.
+
+To achieve this three files will be modified inside the repository:
+  * env
+  * httpd-local.conf
+  * httpd-ssl.conf
 
 ```
 docker-compose-web-dev
 ├── env
 └── docker/
-    ├── apache/
-    │   ├── httpd-local.conf
-    │   └── httpd-ssl.conf
-    └── www/
-        ├── my-website
-        ├── php56
-        ├── php70
-        └── php73
+    └── apache/
+        ├── httpd-local.conf
+        └── httpd-ssl.conf
 ```
+
+
+#### 1. Copy or Create the Web Files
+
+The website files are copied to the directory `C:/www/my-website`.
+
+
+#### 2. Set the Website Directory Path
+
+The **env** file is set to:
+
+```
+HTML_VOLUME=C:/www
+```
+
+This only needs to be set once. Any additional websites should be added to this directory. For example you might have anothe websiter called **loc.another-website.com** and you might host its files from a folder at `C:/www/another-website`.
+
+#### 3. Configure HTTP Settings
+
+The **httpd-local.conf** file contains a VirtualHost entry which reads:
+
+```
+<VirtualHost *:80>
+  ServerName my-website.com
+  ServerAlias www.my-website.com *.my-website.com
+
+  DocumentRoot /var/www/html/my-website
+  
+  <Directory /var/www/html/my-website>
+    DirectoryIndex index.html index.php
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://php73:9000/var/www/html/my-website/$1
+  
+  CustomLog /proc/self/fd/1 common
+  ErrorLog /proc/self/fd/2
+</VirtualHost>
+```
+
+Note where `my-website` appears in the code.
+
+Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://php73` to the version of PHP you want to use.
+
+When you need to create more websites, just add a new entry into the httpd-local.conf file.
+
+
+#### 4. Configure HTTPS Settings
+
+The **httpd-ssl.conf** file contains a VirtualHost entry which reads:
+
+```
+<VirtualHost *:443>
+  ServerName my-website.com
+  ServerAlias www.my-website.com *.my-website.com
+
+  DocumentRoot /var/www/html/my-website
+
+  <Directory /var/www/html/my-website>
+    DirectoryIndex index.html index.php
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://php73:9000/var/www/html/my-website/$1
+
+  CustomLog /proc/self/fd/1 common
+  ErrorLog /proc/self/fd/2
+
+  SSLEngine on
+
+  SSLCertificateFile "/etc/ssl/certs/server.crt"
+  SSLCertificateKeyFile "/etc/ssl/private/server.key"
+</VirtualHost>
+```
+
+Note where `my-website` appears in the code.
+
+Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://php73` to the version of PHP you want to use.
+
+When you need to create more websites, just add a new entry into the httpd-ssl.conf file.
+
+
+#### 5. Final Steps
+
+Run the command `docker-compose up --build`. This is needed to force the build to refresh since changes have been made to the Docker configuration files.
+
+The website can now be reached from a web browser at:
+  * `http://loc.my-website.com`
+  * `https://loc.my-website.com`
+
 
 ## Website Files
 Website files are mounted from the local file system at ./www into CentOS at /var/www/html/.
