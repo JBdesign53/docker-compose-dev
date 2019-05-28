@@ -29,8 +29,10 @@ The following domains should now be reachable through your web browser:
 * http://php56.com
 * https://php56.com
 
+
 * http://php70.com
 * https://php70.com
+
 
 * http://php73.com
 * https://php73.com
@@ -77,6 +79,8 @@ To achieve this three files will be modified inside the repository:
   * env
   * httpd-local.conf
   * httpd-ssl.conf
+  
+File location:
 
 ```
 docker-compose-web-dev
@@ -116,7 +120,7 @@ The following entry is added to the hosts file:
 
 The **httpd-local.conf** file is updated with a VirtualHost entry which reads:
 
-```
+``` apache
 <VirtualHost *:80>
   ServerName my-website.com
   ServerAlias www.my-website.com *.my-website.com
@@ -146,7 +150,7 @@ Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://
 
 The **httpd-ssl.conf** file is updated with a VirtualHost entry which reads:
 
-```
+``` apache
 <VirtualHost *:443>
   ServerName my-website.com
   ServerAlias www.my-website.com *.my-website.com
