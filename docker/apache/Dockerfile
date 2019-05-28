@@ -4,10 +4,6 @@ FROM centos/httpd-24-centos7
 
 USER root
 
-# Copy apache vhost files to proxy php requests to php-fpm container
-COPY httpd-local.conf /etc/httpd/conf.d/httpd-local.conf
-COPY httpd-ssl.conf /etc/httpd/conf.d/httpd-ssl.conf
-
 RUN yum -y update && yum clean all \
     && yum install nano -y
 #RUN yum install htop -y
@@ -44,3 +40,7 @@ RUN sed -i "s|8080|80 |g" /etc/httpd/conf/httpd.conf \
 # Add reference to httpd-local.conf into httpd.conf
 #RUN echo "Include /etc/httpd/conf/httpd-local.conf" \
 #    >> /etc/httpd/conf/httpd.conf
+
+# Copy apache vhost files to proxy php requests to php-fpm container
+COPY httpd-local.conf /etc/httpd/conf.d/httpd-local.conf
+COPY httpd-ssl.conf /etc/httpd/conf.d/httpd-ssl.conf
