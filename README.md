@@ -1,7 +1,5 @@
 # Local Web Development Environment
 
-**Documentation is in-progress and incomplete!**
-
 Deploy a web development environment for multiple domains running on different versions of PHP.
 
 * Suitable as a local web development environment.
@@ -49,14 +47,14 @@ Stop the environment with:
 `ctrl-c` and then `docker-compose down`
 
 
-## Serving Your Website Files
+## Serving Your Own Website Files
 
 Note: It is recommended that you follow the steps in **Initial Setup** to confirm the local web development environment is working before making changes to serve your own web files.
 
-Additional configuration is required to setup local domain names and to serve your web files.
+Additional configuration is required to setup local domain names and to serve your web files. After reading this section refer to **Example Website Setup** for detailed information.
 
-First:
-* Provide the path to your website directory. This will contain each website/domain in its own  child directory.
+Complete one-time configuration:
+* Provide the path to your website directory. This will contain each website/domain in its own child directory.
 
 Then, for each new website/domain create an additional:
 * Child directory in the website directory. Copy the files for your website/domin into the child directory.
@@ -68,12 +66,12 @@ Then, for each new website/domain create an additional:
 
 ## Example Website Setup
 
-This section shows an example of how to create a new local website called `my-website`.
+This section shows an example of how to create a new local website at the domain `loc.my-website.com`.
 
-The `my-website` website:
-  * Files are located at `C:/www/my-website`.
-  * Uses the domain `loc.my-website.com` and is available over HTTP and HTTPS.
-  * Will run using PHP 7.3.
+In this example:
+  * Web files are located at `C:/www/my-website`.
+  * The website can be browsed to at `http://loc.my-website.com` or `https://loc.my-website.com`.
+  * PHP 7.3 is used.
 
 To achieve this three files will be modified inside the repository:
   * env
@@ -116,7 +114,7 @@ The following entry is added to the hosts file:
 
 ### 4. Configure HTTP Settings
 
-The **httpd-local.conf** file contains a VirtualHost entry which reads:
+The **httpd-local.conf** file is updated with a VirtualHost entry which reads:
 
 ```
 <VirtualHost *:80>
@@ -146,7 +144,7 @@ Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://
 
 ### 5. Configure HTTPS Settings
 
-The **httpd-ssl.conf** file contains a VirtualHost entry which reads:
+The **httpd-ssl.conf** file is updated with a VirtualHost entry which reads:
 
 ```
 <VirtualHost *:443>
