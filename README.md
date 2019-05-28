@@ -186,7 +186,7 @@ The website can now be reached from a web browser at:
   * `https://loc.my-website.com`
 
 
-### Website Directory Path
+## Website Directory Path
 
 Using the default setup, Docker serves your web files from the `/docker/www/` directory. Each domain/website is in its own directory within this folder.
 
@@ -218,11 +218,8 @@ Additional setup steps and installation:
 ### Ports
 The following ports are exposed by Apache and Docker Compose:
 
-HTTP:
-* 80
-
-HTTPS:
-* 443
+* 80 (HTTP)
+* 443 (HTTPS)
 
 ## Security Risks
 
