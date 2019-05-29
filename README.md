@@ -11,7 +11,7 @@ Deploy a web development environment for multiple domains running on different v
 
 ## Initial Setup
 
-Install Docker for your operating system.
+Install Docker for your operating system. For more information visit https://docs.docker.com/install/
 
 After cloning this repository there are a few steps to setup and check initial configuration is working.
 
