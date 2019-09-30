@@ -25,7 +25,7 @@ The location of your hosts file varies depending on your operating system:
 Next, from your command line:
 * Navigate to the `docker-compose-web-dev` folder.
 * Run `docker-compose up`.
-* Once the build finishes, open your browser and navigate to: http://php73.com
+* Once the build finishes, open your browser and navigate to: http://loc.php73.com
 * You should see a page titled *HTML Test Page for /php73*.
 
 The following domains should now be reachable through your web browser:
