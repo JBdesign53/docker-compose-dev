@@ -31,16 +31,16 @@ Next, from your command line:
 The following domains should now be reachable through your web browser:
 
 PHP 5.6:
-* http://php56.com
-* https://php56.com
+* http://loc.php56.com
+* https://loc.php56.com
 
 PHP 7.0:
-* http://php70.com
-* https://php70.com
+* http://loc.php70.com
+* https://loc.php70.com
 
 PHP 7.3:
-* http://php73.com
-* https://php73.com
+* http://loc.php73.com
+* https://loc.php73.com
 
 
 ## Running the Environment
