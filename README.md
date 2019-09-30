@@ -11,12 +11,16 @@ Deploy a web development environment for multiple domains running on different v
 
 ## Initial Setup
 
-After cloning the repository there are a few steps to setup and test the initial configuration.
+Install Docker for your operating system. For more information visit https://docs.docker.com/install/
 
-Copy the contents from `/extra/hosts` and paste it at the end of your local `hosts` file and save. Your local hosts file location varies depending on your operating system:
+After cloning this repository there are a few setup steps to complete before confirming the initial configuration is working.
 
-* Windows: C:\Windows\System32\drivers\etc\hosts
-* Mac/Linux: /etc/hosts
+Copy the contents from `/extra/hosts` and paste it at the end of your local `hosts` file and save.
+
+The location of your hosts file varies depending on your operating system:
+
+* Windows: `C:/Windows/System32/drivers/etc/hosts`
+* Mac/Linux: `/etc/hosts`
 
 Next, from your command line:
 * Navigate to the `docker-compose-web-dev` folder.
@@ -26,12 +30,15 @@ Next, from your command line:
 
 The following domains should now be reachable through your web browser:
 
+PHP 5.6:
 * http://php56.com
 * https://php56.com
 
+PHP 7.0:
 * http://php70.com
 * https://php70.com
 
+PHP 7.3:
 * http://php73.com
 * https://php73.com
 
@@ -57,7 +64,7 @@ Complete one-time configuration:
 * Provide the path to your website directory. This will contain each website/domain in its own child directory.
 
 Then, for each new website/domain create an additional:
-* Child directory in the website directory. Copy the files for your website/domin into the child directory.
+* Child directory in the website directory. Copy the files for your website/domain into the child directory.
 * Hosts file entry. This forwards the website domain name to Apache.
 * Vhosts entry. This tells Apache where your website files are located and which PHP version to use.
 
@@ -77,6 +84,8 @@ To achieve this three files will be modified inside the repository:
   * env
   * httpd-local.conf
   * httpd-ssl.conf
+  
+File location:
 
 ```
 docker-compose-web-dev
@@ -116,7 +125,7 @@ The following entry is added to the hosts file:
 
 The **httpd-local.conf** file is updated with a VirtualHost entry which reads:
 
-```
+``` apache
 <VirtualHost *:80>
   ServerName my-website.com
   ServerAlias www.my-website.com *.my-website.com
@@ -146,7 +155,7 @@ Pay particular attention to the line `ProxyPassMatch`. Make sure to set `fcgi://
 
 The **httpd-ssl.conf** file is updated with a VirtualHost entry which reads:
 
-```
+``` apache
 <VirtualHost *:443>
   ServerName my-website.com
   ServerAlias www.my-website.com *.my-website.com
