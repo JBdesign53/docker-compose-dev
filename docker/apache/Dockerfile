@@ -1,3 +1,7 @@
+# Separate out the Apache Dockerfile from vhost files (config) ie. access vhosts files at /config
+# 'Copy' at the bottom of this file is causing a build context problem. Look into:
+# https://stackoverflow.com/questions/27068596/how-to-include-files-outside-of-dockers-build-context
+
 # https://serverfault.com/questions/302592/include-files-in-apache-http-server-version-2-2-httpd-conf
 
 FROM centos/httpd-24-centos7
@@ -44,3 +48,5 @@ RUN sed -i "s|8080|80 |g" /etc/httpd/conf/httpd.conf \
 # Copy apache vhost files to proxy php requests to php-fpm container
 COPY httpd-local.conf /etc/httpd/conf.d/httpd-local.conf
 COPY httpd-ssl.conf /etc/httpd/conf.d/httpd-ssl.conf
+#COPY ../../config/httpd-local.conf /etc/httpd/conf.d/httpd-local.conf
+#COPY ../../config/httpd-ssl.conf /etc/httpd/conf.d/httpd-ssl.conf

@@ -1,8 +1,8 @@
-127.0.0.1       php56.com
-::1             php56.com
+127.0.0.1       loc.php56.com
+::1             loc.php56.com
 
-127.0.0.1       php70.com
-::1             php70.com
+127.0.0.1       loc.php70.com
+::1             loc.php70.com
 
-127.0.0.1       php73.com
-::1             php73.com
+127.0.0.1       loc.php73.com
+::1             loc.php73.com
