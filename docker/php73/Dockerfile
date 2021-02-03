@@ -13,3 +13,13 @@ RUN pecl install xdebug-2.7.0 \
 # Install mysqli
 RUN docker-php-ext-install mysqli \
     && docker-php-ext-enable mysqli
+
+# Mail
+RUN apt-get update && \
+    apt-get install -y msmtp && \
+    apt-get clean
+
+COPY msmtp.conf /etc/msmtprc
+
+# PHP mail settings
+RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
